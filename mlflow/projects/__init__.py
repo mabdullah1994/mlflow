@@ -140,7 +140,7 @@ def _run(
             active_run.info.run_id, MLFLOW_PROJECT_BACKEND, "kubernetes"
         )
         validate_docker_env(project)
-        validate_docker_installation()
+#         validate_docker_installation()
         kube_config = _parse_kubernetes_config(backend_config)
         image = build_docker_image(
             work_dir=work_dir,
