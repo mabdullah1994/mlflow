@@ -20,6 +20,7 @@ _logger = logging.getLogger(__name__)
 
 def push_image_to_registry(image_tag):
     client = docker.from_env()
+    client.login(username=os.environ["CR_USERNAME"], password=os.environ["CR_PASSWORD"], registry=os.environ["CR_HOST"])
     _logger.info("=== Pushing docker image %s ===", image_tag)
     for line in client.images.push(repository=image_tag, stream=True, decode=True):
         if "error" in line and line["error"]:
